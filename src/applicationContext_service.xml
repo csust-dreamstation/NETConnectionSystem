@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="userService" class="com.netconnection.service.impl.UserServiceImpl">
+		<property name="userDAO" ref="UserDAO"></property>
+	</bean>
+	
+	<bean id="illegalService" class="com.netconnection.service.impl.IllegalServiceImpl">
+		<property name="illegalDAO" ref="IllegalDAO"></property>
+	</bean>
+	
+	<bean id="logService" class="com.netconnection.service.impl.LogServiceImpl">
+		<property name="logDAO" ref="LogDAO"></property>
+	</bean>
+	
+	<bean id="pcinfoService" class="com.netconnection.service.impl.PCInfoServiceImpl">
+		<property name="pcinfoDAO" ref="PcinfoDAO"></property>
+	</bean>
+	
+	<bean id="onlinetimeService" class="com.netconnection.service.impl.OnlineTimeServiceImpl">
+		<property name="onlineTimeDao" ref="OnlinetimeDAO"></property>
+		<property name="pcinfoDao" ref="PcinfoDAO"></property>
+		
+	</bean>
+	
+	<bean id="messageService" class="com.netconnection.service.impl.MessageServiceImpl">
+		<property name="msgDAO" ref="MessageDAO"></property>
+		<property name="services" ref="Services"></property>
+	</bean>
+	
+	<bean id="softInstallStateService" class="com.netconnection.service.impl.SoftInstallStateServiceImpl">
+		<property name="softDAO" ref="SoftinstallstateDAO"></property>
+		<property name="softManage" ref="SoftManage"></property>
+	</bean>
+	
+	<bean id="patchInstallStateService" class="com.netconnection.service.impl.PatchInstallStateServiceImpl">
+		<property name="patchDao" ref="PatchinstallstateDAO"></property>
+	</bean>
+	
+	<bean id="copyScreenService" class="com.netconnection.service.impl.CopyScreenServiceImpl">
+		<property name="copyscreenDao" ref="CopyScreenDAO"></property>
+	</bean>
+<!-- 策略配置 -->
+	<bean id="SoftService" class="com.netconnection.service.impl.SoftServiceImpl" scope="prototype">
+	<property name="softManage" ref="SoftManage"></property>
+	</bean>
+	
+	<bean id="TacticsService" class="com.netconnection.service.impl.TacticsServiceImpl" scope="prototype">
+	<property name="tacticsManage" ref="TacticsManage"></property>
+	</bean>
+	
+	<bean id="TacticsSoftService" class="com.netconnection.service.impl.TacticsSoftServiceImpl" scope="prototype">
+	<property name="tacticsSoftManage" ref="TacticsSoftManage"></property>
+	</bean>
+	
+	<bean id="TacticsPcService" class="com.netconnection.service.impl.TacticsPcServiceImpl" scope="prototype">
+	<property name="tacticsPcManage" ref="TacticsPcManage"></property>
+	</bean>
+	
+	<bean id="ReceiveMessageService" class="com.netconnection.service.impl.ReceiveMessageServiceImpl" scope="prototype">
+		<property name="receiveMessageManage" ref="ReceiveMessageManage"></property>
+	</bean>
+	<!-- 策略配置 -->
+	
+	<!--报表模块 -->	
+	
+	<bean id="ExportReportService " class="com.netconnection.service.impl.ExportReportServiceImpl" scope="prototype">
+	<property name="exportReportManage" ref="ExportReportManage"></property>
+	</bean>
+	
+	<!--报表模块 -->		
+	
+</beans>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 该bean主要开启处理与客户端连接模块线程的 -->
+	<bean id="serverAction" class="cn.com.server.Server">
+		<constructor-arg ref="copyScreenService" type="com.netconnection.service.ICopyScreenService">
+       </constructor-arg>
+        <constructor-arg ref="onlinetimeService" type="com.netconnection.service.IOnlineTimeService">
+       </constructor-arg> 
+       <constructor-arg ref="pcinfoService" type="com.netconnection.service.IPCInfoService">
+       </constructor-arg>
+       <constructor-arg ref="messageService" type="com.netconnection.service.IMessageService">
+       </constructor-arg>
+       <constructor-arg ref="ReceiveMessageService" type="com.netconnection.service.ReceiveMessageService">
+       </constructor-arg> 
+       <constructor-arg ref="SoftService" type="com.netconnection.service.SoftService">
+       </constructor-arg> 
+       <constructor-arg ref="TacticsSoftService" type="com.netconnection.service.TacticsSoftService">
+       </constructor-arg> 
+       <constructor-arg ref="TacticsService" type="com.netconnection.service.TacticsService">
+       </constructor-arg> 
+       <constructor-arg ref="TacticsPcService" type="com.netconnection.service.TacticsPcService">
+       </constructor-arg>  
+       <constructor-arg ref="logService" type="com.netconnection.service.ILogService">
+       </constructor-arg>  
+       <constructor-arg ref="userService" type="com.netconnection.service.IUserService">
+       </constructor-arg>   
+	   <constructor-arg ref="illegalService" type="com.netconnection.service.IllegalService">
+       </constructor-arg>   
+	</bean>
+	<!-- 该bean主要开启处理与客户端连接模块线程的 -->
+	
+	
+	
+	<bean id="userAction" class="com.netconnection.action.UserAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<bean id="validateCodeAction" class="com.netconnection.action.ValidateCodeAction">
+		<property name="validateCode">
+			<bean class="com.netconnection.util.ValidateCode"></bean>
+		</property>
+	</bean>
+	
+	<bean id="monitorAction" class="com.netconnection.action.MonitorAction">
+		<property name="pcinfoService" ref="pcinfoService"></property>
+		<property name="copyScreenService" ref="copyScreenService"></property>
+		<property name="services" ref="Services"></property>	
+		<property name="softService" ref="softInstallStateService"></property>
+		<property name="patchService" ref="patchInstallStateService"></property>
+	</bean>
+	
+	<bean id="messageAction" class="com.netconnection.action.MessageAction">
+		<property name="messageService" ref="messageService"></property>
+	</bean>
+	
+	<bean id="onlineTimeLogAction" class="com.netconnection.action.OnlineTimeLogAction">
+		<property name="onlineService" ref="onlinetimeService"></property>
+		<property name="pcinfoService" ref="pcinfoService"></property>
+	</bean>
+	
+	<!--系统配置  -->
+	<bean id="systemSettingAction" class="com.netconnection.action.SystemSettingAction">
+		<property name="services" ref="Services"></property>
+	</bean>
+	<!--系统配置  -->
+	
+	
+<!-- 策略配置 -->
+
+	<!-- 显示策略与PC关系表的action -->
+	<bean id="TacticsPcListAction" class="com.netconnection.action.TacticsPcListAction" scope="prototype">
+		<property name="tacticsPcService" ref="TacticsPcService"></property>
+		<property name="pcinfoService" ref="pcinfoService"></property>
+		<property name="tacticsService" ref="TacticsService"></property>
+	</bean>
+	<!-- 提交策略与PC关系的action -->
+	<bean id="TacticsPcSubmitAction" class="com.netconnection.action.TacticsPcSubmitAction" scope="prototype">
+			<property name="softService" ref="SoftService"></property>
+			<property name="tacticsSoftService" ref="TacticsSoftService"></property>
+			<property name="services" ref="Services"></property>
+			<property name="tacticsPcService" ref="TacticsPcService"></property>
+			<property name="tacticsService" ref="TacticsService"></property>
+			<property name="pcinfoService" ref="pcinfoService"></property>
+	</bean>
+	<!-- 添加时间的action -->
+	<bean id="AddTimeAction" class="com.netconnection.action.AddTimeAction" scope="prototype">
+		<property name="tacticsService" ref="TacticsService"></property>
+	</bean>
+
+	<!-- 显示黑白名单的action -->
+	<bean id="SoftListAction" class="com.netconnection.action.SoftListAction" scope="prototype">
+		<property name="softService" ref="SoftService"></property>
+		<property name="tacticsService" ref="TacticsService"></property>
+		<property name="tacticsSoftService" ref="TacticsSoftService"></property>	
+	</bean>
+	<!-- 显示策略列表的action -->
+	<bean id="TacticsListAction" class="com.netconnection.action.TacticsListAction" scope="prototype">
+		<property name="tacticsService" ref="TacticsService"></property>
+	</bean>
+	<!-- 显示系统版本的action -->
+	<bean id="OsListAction" class="com.netconnection.action.OsListAction" scope="prototype">
+		<property name="pcinfoService" ref="pcinfoService"></property>
+	</bean>
+	<!-- 添加策略表的action -->
+	<bean id="AddTacticsListAction" class="com.netconnection.action.AddTacticsListAction" scope="prototype">
+		<property name="tacticsService" ref="TacticsService"></property>
+	</bean>
+	<!-- 删除策略表的action -->
+	<bean id="DeleteTacticsListAction" class="com.netconnection.action.DeleteTacticsListAction" scope="prototype">
+			<property name="tacticsService" ref="TacticsService"></property>
+	</bean>
+	<!--提交用户配置所修改的内容    -->
+	<bean id="SoftSubmitAction" class="com.netconnection.action.SoftSubmitAction" scope="prototype">
+			<property name="softService" ref="SoftService"></property>
+			<property name="tacticsSoftService" ref="TacticsSoftService"></property>
+			<property name="services" ref="Services"></property>
+			<property name="tacticsPcService" ref="TacticsPcService"></property>
+			<property name="tacticsService" ref="TacticsService"></property>
+	</bean>
+	<!-- 添加黑白名单具体内容软件名称的action -->
+	<bean id="AddSoftListAction" class="com.netconnection.action.AddSoftListAction" scope="prototype">
+	<property name="softService" ref="SoftService"></property>
+	</bean>
+	<!-- 添加黑白名单具体内容软件名称的action -->
+	<bean id="AddPatchListAction" class="com.netconnection.action.AddPatchListAction" scope="prototype">
+	<property name="softService" ref="SoftService"></property>
+	</bean>
+	<!-- 策略配置 -->
+	<!--报表模块 -->	
+	<!-- 报表导出部分 -->
+	<bean id="ExportReportAction" class="com.netconnection.action.ExportReportAction" scope="prototype">
+		<property name="exportReportService" ref="ExportReportService"></property>
+	</bean>
+	<!-- 报表导出部分 -->
+	
+	<!--报表模块 -->	
+	
+	
+	<!-- 日志相关配置 -->
+	<bean id="logAction" class="com.netconnection.action.LogAction">
+		<property name="logService" ref="logService"></property>
+	</bean>
+	
+	<!-- 数据库备份 -->
+	<bean id="loadAction" class="com.netconnection.action.LoadAction"></bean>
+</beans>

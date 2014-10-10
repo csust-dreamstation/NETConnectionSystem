@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.netconnection.entity.SoftList" table="softlist" catalog="netconnection">
+        <id name="softid" type="int">
+            <column name="softid" />
+            <generator class="native" />
+        </id>      
+        <property name="threadname" type="java.lang.String">
+            <column name="threadname" length="45" not-null="true" />
+        </property> 
+        <property name="softname" type="java.lang.String">
+            <column name="softname" length="45" not-null="true" />
+        </property>
+        <property name="choose" type="java.lang.String">
+            <column name="choose" length="45" not-null="false" />
+        </property>
+        <property name="statu" type="java.lang.Integer">
+            <column name="statu" length="11" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

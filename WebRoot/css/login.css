@@ -1,0 +1,89 @@
+
+ 	body{
+	   background-color: #D2DDDD;
+	}
+	#div_big{
+	background-color: #DFFCFF;
+	position:absolute;
+	left:420px;
+	top:120px;
+	width:450px;
+	height:300px;
+	border:1px solid  #3399FF;
+	border-radius: 15px;
+	   -webkit-box-shadow:5px 2px 6px #666666;
+	   -moz-box-shadow:5px 2px 6px #000;
+	margin-top: 10px;
+	margin-left: 50px;
+	}
+	div{
+		display:inline-table;
+
+	}
+	span{
+		color:#27ABF1;
+		font-family: "ºÚÌå";
+	}
+	.div_tr{
+		width:300px;
+		height:50px;
+		position:relative;
+		top:5px;
+		   
+	}
+	#img_button{
+		background-image: url('../image/login_button.jpg');
+		background-repeat:no-repeat;
+		float:right;
+		width:100px;
+		height:90px;
+		border:0px;
+		position:relative;
+		top:-80px;
+		right:40px;	
+	}
+		
+	input:focus{
+		border:2px solid red;
+	}
+	input{
+		height:27px;
+		background-color:#DFFCFF;
+		border:2px solid #37D7D7;
+	}
+	form{
+		position:relative;
+		top:20px;
+		left: 30px;
+		
+	}
+	#validateCode{
+		width: 70px;
+	}
+	#err_msg{
+		position:relative;
+		left:30px;
+		color:red;
+	}
+	.page:after {
+	    width: 449px;
+	    height: 50px;
+	    content: " ";
+	    margin-left: 90px;
+	    border: 1px solid rgba(200, 200, 200, .8);
+	    background: rgba(254, 254, 254, .6);
+	
+	    -moz-box-shadow: 0px 0 3px rgba(0, 0, 0, 0.1);
+	    -webkit-box-shadow: 0px 0 3px rgba(0, 0, 0, 0.1);
+	    box-shadow: 0px 0 3px rgba(0, 0, 0, 0.1);
+	    border-radius: 15px;
+	    
+	    -moz-transform: rotate(0deg);
+	    -webkit-transform: rotate(0deg);
+	    -o-transform: rotate(0deg);
+	    transform: rotate(0deg);
+	    
+	    position: absolute;
+	    left:-89px;;
+	    top:248px;
+}

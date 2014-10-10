@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<include file="struts-default.xml"></include>
+	<include file="struts-plugin.xml"></include>
+	<constant name="struts.devMode" value="true"></constant>
+	<package name="netconnection" extends="struts-default">
+		<!-- 用户管理 -->
+		<action name="loginAction" class="userAction" method="login">
+			<result name="success" type="redirect">/main.jsp</result>
+			<result name="input">/login1.jsp</result>
+		</action>
+		
+		<action name="exitAction" class="userAction" method="exit">
+			<result name="success" type="redirect">/login1.jsp</result>
+		</action>
+		
+		<action name="addUserAction" class="userAction" method="addUser">
+			<result name="input">/systemsetting.jsp</result>
+		</action>
+		
+		<action name="updateUserAction" class="userAction" method="updateUser">
+			<result name="input">/systemsetting.jsp</result>
+		</action>
+		
+		<action name="deleteUserAction" class="userAction" method="deleteUser">
+			<result name="input">/systemsetting.jsp</result>
+		</action>
+		
+		<!-- 用户管理 -->	
+		
+		<action name="saveServerSettingAction" class="systemSettingAction" method="saveServerSetting">
+			<result name="input">/systemsetting.jsp</result>
+		</action>
+		<action name="saveDnsSettingAction" class="systemSettingAction" method="saveDnsSetting">
+			<result name="input">/systemsetting.jsp</result>
+		</action>
+		
+		<action name="getSystemSettingAction" class="systemSettingAction" method="ServerData">
+			<result name="input" >/systemsetting.jsp</result>
+		</action>
+		
+		<action name="checkWifiAction" class="systemSettingAction" method="SaveCheckWifiType">
+			<result name="input" >/systemsetting.jsp</result>
+		</action>
+		
+		<action name="saveFlowWarningSettingAction" class="systemSettingAction" method="saveFlowWarningSetting">
+			<result name="input">/systemsetting.jsp</result>
+		</action>
+		
+		<action name="deleteCopyScreenAction" class="monitorAction" method="deleteCopyScreen">
+			<result name="input" >/onlinelist.jsp</result>
+		</action>
+		
+		<action name="pcinformationAction" class="monitorAction" method="pcinformation">
+			<result name="input" >/pcinformation.jsp</result>
+		</action>
+	
+		<action name="validateAction" class="validateCodeAction" method="validateImage">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+			</result>
+		</action>
+		<!-- 数据库备份 -->
+		<action name="backupDataBaseAction" class="loadAction" >
+		     <result type="stream">
+			      <param name="contentType">application/x-download</param>
+			      <param name="inputName">SimpleDownloadStream</param>
+			      <param name="contentDisposition">attachement;filename="mydb.sql"</param>  
+			      <param name="bufferSize">50000000</param>
+		     </result>
+		 </action>
+
+		
+	</package>
+	<package name="TestJson" extends="json-default">
+		<action name="getAllPCByPageAction" class="monitorAction" method="getAllPCByPage">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		
+		<action name="getOnlinePcPageAction" class="monitorAction" method="getOnlinePcPage">
+			<result name="success" type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		
+		<action name="getStatisticsAction" class="monitorAction" method="getStatistics">
+			<result type="json">
+				<param name="root">statisticsMsg</param>
+			</result>
+		</action>
+		
+		<action name="sendMessageAction" class="messageAction" method="sendMsg">
+			<result name="success" type="json">
+				<param name="root">retMsg</param>
+			</result>
+		</action>
+		<action name="sendMessageToSomeAction" class="messageAction" method="sendMsgToSome">
+			<result name="success" type="json">
+				<param name="root">retMsg</param>
+			</result>
+		</action>
+		<action name="getMessageAction" class="messageAction" method="getMsg">
+			<result name="success" type="json">
+				<param name="root">msgList</param>
+			</result>
+		</action>
+		
+		<action name="getSomeMessageAction" class="messageAction" method="getSomeMsg">
+			<result name="success" type="json">
+				<param name="root">msgList</param>
+			</result>
+		</action>
+		
+		<action name="sendCommodAction" class="monitorAction" method="sendCommod">
+			<result name="success" type="json">
+				<param name="root">retMsg</param>
+			</result>
+		</action>
+		<action name="sendSomeCommodToSomeAction" class="monitorAction" method="sendSomeCommodToSome">
+			<result name="success" type="json">
+				<param name="root">retMsg</param>
+			</result>
+		</action>
+		
+		
+		
+		<action name="copyScreenByOneAction" class="monitorAction" method="getCopyScreenByOne">
+			<result name="success" type="json">
+				<param name="root">retMsg</param>
+			</result>
+		</action>
+		
+		<action name="findPcinfoByConditionAndPageAction" class="monitorAction" method="findPcinfoByConditionAndPage">
+			<result name="success" type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		
+		<action name="findLogByConditionAction" class="logAction" method="findLogByCondition">
+			<result name="success" type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		
+		
+		<!-- 客户端登录日志 -->
+		<action name="findAllOnlineRecordAction" class="onlineTimeLogAction" method="findAllOnLineRecord">
+			<result name="success" type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		
+		<action name="findOnlineTimeByConditionAction" class="onlineTimeLogAction" method="findOnlineTimeByCondition">
+			<result name="success" type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		<!-- 客户端登录日志 -->
+
+		<!-- 用户管理 -->
+		<action name="findAllUserAction" class="userAction" method="findAllUser">
+			<result name="success" type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>	
+		<!-- 用户管理 -->
+		
+
+	<!--报表模块 -->	
+	<!--报表模块 -->	
+		
+		<!--导出报表的action  -->
+		<!-- 导出客户端基本信息报表 -->
+		<action name="showSoftReportAction" class="ExportReportAction" method="showExportSoftReport">
+		<result type="json">
+		<param name="root">resultObj</param>
+		</result>
+		</action>
+		
+		<!-- 导出客户端未关机终端报表 -->
+		<action name="showUnclosedReportAction" class="ExportReportAction" method="showUnclosedReport">
+		<result type="json">
+		<param name="root">resultObj</param>
+		</result>
+		</action>
+		<!-- 导出客户端软件安装统计报表 -->
+		<action name="showInstallReportAction" class="ExportReportAction" method="showInstallReport">
+		<result type="json">
+		<param name="root">resultObj</param>
+		</result>
+		</action>
+		
+		<!-- 客户端违规外连统计报表 -->
+		<action name="showIllegalAceessReportAction" class="ExportReportAction" method="showIllegalAceessReport">
+		<result type="json">
+		<param name="root">resultObj</param>
+		</result>
+		</action>
+		
+		
+		<action name="exportSoftReportAction" class="ExportReportAction" method="exportSoftReport">
+		</action>
+
+			<action name="downloadExcel" class="ExportReportAction" method="downloadExcel"><!--返回图片数据流给前台-->
+     		<!-- result的Type必须为stream -->
+			<result name="success" type="stream">				
+				<param name="contentType">application/vnd.ms-excel</param>
+				<!-- 下载的InputStream流，Struts2自己动对应Action中的getDownloadFile方法，该方法必须返回InputStream类型 -->
+				<param name="inputName">targetFile</param>
+				<param name="bufferSize">4096</param>
+				<!-- 下载对话框所弹出的文件名动态显示实际文件名 -->
+				<param name="contentDisposition">attachment;filename="download.xls"</param>
+			</result>		
+		</action>
+
+		<!--导出报表的action  -->
+		
+		<!--报表模块 -->	
+			
+		<!-- 策略模块 -->
+
+		<!--显示黑白名单的action  -->
+		<action name="softListAction" class="SoftListAction">
+		</action>
+		<!--显示黑白名单的action  -->
+		<action name="addTimeAction" class="AddTimeAction">	
+		</action>
+		<!--保存策略与pc对应信息的action  -->
+		<action name="tacticsPcSubmitAction" class="TacticsPcSubmitAction">
+			<result type="redirect">/success.jsp</result>
+		</action>
+		<!-- 获得黑名单的action -->
+		<action name="getBlackListAction" class="SoftListAction" method="getBlackList1">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+			<!-- 删除软件与补丁的action -->
+		<action name="deleteSoftAction" class="SoftSubmitAction" method="deleteSoft">
+		</action>
+		<!-- 获得白名单的action -->
+		<action name="getWhiteListAction" class="SoftListAction" method="getWhiteList1">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+			<!-- 获得补丁名单的action -->
+		<action name="getPatchListAction" class="SoftListAction" method="getPatchList1">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		<!-- 显示策略列表的action -->
+		<action name="tacticsListAction" class="TacticsListAction">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		<!--显示策略与PC名单的action  -->
+		<action name="tacticsPcListAction" class="TacticsPcListAction" method="getClientList">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		<!-- 添加策略表的action  -->
+		<action name="addTacticsListAction" class="AddTacticsListAction">
+		<result type="redirect">/success.jsp</result>
+		</action>
+		<!-- 删除策略表的action  -->
+		<action name="deleteTacticsListAction" class="DeleteTacticsListAction">
+		<result name="success" type="redirect">tactics/main.jsp</result>
+		</action>
+		<!-- 添加黑白名单具体内容的action -->
+		<action name="addSoftListAction" class="AddSoftListAction">
+		<result type="redirect">tactics/addsoft.jsp</result>
+		</action>
+		<!-- 添加补丁列表具体内容的action -->
+		<action name="addPatchListAction" class="AddPatchListAction">
+		<result type="redirect">tactics/addsoft.jsp</result>
+		</action>
+		<!--提交用户配置所修改的内容     -->
+		<action name="softSubmitAction" class="SoftSubmitAction">
+		</action>
+		<!-- 策略模块 -->
+		<!-- OS版本选择 -->
+		<action name="OsListAction" class="OsListAction">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		<!-- OS版本选择 -->
+		
+		<!-- 日志相关配置 -->
+		<action name="logByPagingAction" class="logAction" method="getLogByPage">
+			<result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+		<action name="exportLogAction" class="logAction" method="exportLog"></action>
+	</package>
+</struts>    

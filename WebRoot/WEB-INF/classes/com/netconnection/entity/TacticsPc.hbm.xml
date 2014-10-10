@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.netconnection.entity.TacticsPc" table="tactics_pc" catalog="netconnection">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>      
+        <property name="tacticsid" type="java.lang.Integer">
+            <column name="tacticsid" length="11" not-null="true" />
+        </property> 
+         <property name="mac" type="java.lang.String">
+            <column name="mac" length="45" not-null="true" />
+        </property> 
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="NETConnectionSystem2.7.0"
+  id="myeclipse.1404091980448"
+  context-root="/NETConnectionSystem2.7.0"
+  j2ee-spec="6.0"
+  archive="NETConnectionSystem2.7.0.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

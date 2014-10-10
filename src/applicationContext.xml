@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/netconnection?useUnicode=true&amp;characterEncoding=UTF-8">
+		</property>
+			<property name="username" value="root"></property>
+			 <property name="password" value="123456"></property> 
+			 <!-- <property name="password" value="7837163"></property>  -->
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>		
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/netconnection/entity/User.hbm.xml</value>
+				<value>com/netconnection/entity/Log.hbm.xml</value>
+				<value>com/netconnection/entity/Pcinfo.hbm.xml</value>
+				<value>com/netconnection/entity/Onlinetime.hbm.xml</value>
+				<value>com/netconnection/entity/Softinstallstate.hbm.xml</value>
+				<value>com/netconnection/entity/Patchinstallstate.hbm.xml</value>
+				<value>com/netconnection/entity/Message.hbm.xml</value>
+				<value>com/netconnection/entity/CopyScreen.hbm.xml</value>
+				<value>com/netconnection/entity/SoftList.hbm.xml</value>
+				<value>com/netconnection/entity/TacticsList.hbm.xml</value>
+				<value>com/netconnection/entity/TacticsSoftList.hbm.xml</value>
+				<value>com/netconnection/entity/PatchList.hbm.xml</value>
+				<value>com/netconnection/entity/TacticsPc.hbm.xml</value>
+				<value>com/netconnection/entity/Illegal.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="UserDAO" class="com.netconnection.dao.impl.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="IllegalDAO" class="com.netconnection.dao.impl.IllegalDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="LogDAO" class="com.netconnection.dao.impl.LogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OnlinetimeDAO"
+		class="com.netconnection.dao.impl.OnlinetimeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SoftinstallstateDAO"
+		class="com.netconnection.dao.impl.SoftinstallstateDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PatchinstallstateDAO"
+		class="com.netconnection.dao.impl.PatchinstallstateDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PcinfoDAO" class="com.netconnection.dao.impl.PcinfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MessageDAO" class="com.netconnection.dao.impl.MessageDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CopyScreenDAO" class="com.netconnection.dao.impl.CopyScreenDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 该bean主要处理想客户端发送的一些实施命令 -->
+	<bean id="Services" class="cn.com.server.Services"></bean>
+	
+	<!-- 策略模块部分 -->
+	<bean id="SoftManage" class="com.netconnection.dao.impl.SoftManageImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="TacticsSoftManage" class="com.netconnection.dao.impl.TacticsSoftManageImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="TacticsManage" class="com.netconnection.dao.impl.TacticsManageImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="TacticsPcManage" class="com.netconnection.dao.impl.TacticsPcManageImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ReceiveMessageManage" class="com.netconnection.dao.impl.ReceiveMessageManageImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 策略模块部分 -->
+	<!--报表模块 -->	
+	<bean id="ExportReportManage" class="com.netconnection.dao.impl.ExportReportManageImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!--报表模块 -->		
+	
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="trnsBean" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<tx:advice id="trnsAdvisor" transaction-manager="trnsBean">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="detele*" propagation="REQUIRED"/>
+			<tx:method name="find*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.netconnection.service.impl.*.*(..))" id="trnsPoincut"/>
+		<aop:advisor advice-ref="trnsAdvisor" pointcut-ref="trnsPoincut"/>
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.netconnection.service.impl.*.*(..))" id="mypointcut"/>
+		<aop:aspect id="myaspect" ref="logAction">
+			<aop:before method="logArg" pointcut-ref="mypointcut"/> 	
+		</aop:aspect>
+	</aop:config>
+</beans>

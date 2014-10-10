@@ -1,0 +1,16 @@
+.north_css{
+	height:100px;
+	background:#B3DFDA;
+	background-image:url(../images/topbackground1.jpg);
+	
+	
+}
+
+.west_css{
+	width:150px;
+	padding:10px;
+}
+
+.img_css{
+	height:96px;
+}
