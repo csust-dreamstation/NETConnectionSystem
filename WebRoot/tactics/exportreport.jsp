@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css"  href="<%=basePath%>/styles/contact.css"></link>
 		<link rel="stylesheet" type="text/css" href="<%=basePath%>/easyui/themes/default/easyui.css"></link>
 		<link rel="stylesheet" type="text/css" href="<%=basePath%>/styles/main.css"></link>
-			<link rel="stylesheet" type="text/css" href="<%=basePath%>/easyui/demo/demo.css"></link>
+		<link rel="stylesheet" type="text/css" href="<%=basePath%>/easyui/demo/demo.css"></link>
 		<link rel="stylesheet" type="text/css" href="<%=basePath%>/easyui/themes/icon.css"></link>
 		<link rel="stylesheet" type="text/css" href="<%=basePath%>/styles/default.css"></link>
 </head>
